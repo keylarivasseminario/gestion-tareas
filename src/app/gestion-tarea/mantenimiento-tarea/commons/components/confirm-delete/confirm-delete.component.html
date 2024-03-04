@@ -1,0 +1,14 @@
+<mat-card>
+  <mat-card-content>
+    <h1 mat-dialog-title>Confirmación</h1>
+    <div mat-dialog-content>
+      <p>Esta seguro que desea eliminar esta tarea?</p>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-raised-button class="mr-10" (click)="onCancel()">Cancelar</button>
+      <button mat-raised-button color="primary" (click)="onAccept()">
+        Aceptar
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>

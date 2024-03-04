@@ -1,0 +1,129 @@
+<div class="maintenance">
+  <h1 class="maintenance__title">
+    {{ isUpdating() ? "Actualizar" : "Crear" }} Tarea
+  </h1>
+  <form [formGroup]="form">
+    <mat-card>
+      <mat-card-content>
+        <div>
+          <div class="maintenance__inputs-row">
+            <mat-form-field
+              [ngClass]="{
+                'width-100': !isUpdating(),
+                'width-80 mr-20': isUpdating()
+              }"
+            >
+              <mat-label>Titulo</mat-label>
+              <input
+                matInput
+                placeholder="Escribir el titulo..."
+                formControlName="title"
+              />
+            </mat-form-field>
+
+            <mat-form-field *ngIf="isUpdating()" class="width-20">
+              <mat-label>Estado</mat-label>
+              <mat-select formControlName="status">
+                <mat-option
+                  *ngFor="let food of statusList"
+                  [value]="food.value"
+                >
+                  {{ food.viewValue }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field class="width-100">
+              <mat-label>Descripción</mat-label>
+              <textarea
+                formControlName="description"
+                matInput
+                placeholder="Alguna descripción..."
+              ></textarea>
+            </mat-form-field>
+          </div>
+          <div class="maintenance__inputs-row">
+            <mat-form-field class="width-50 mr-10">
+              <mat-label>Fecha Vencimiento</mat-label>
+              <input
+                formControlName="expirationDate"
+                matInput
+                [matDatepicker]="picker"
+              />
+              <mat-datepicker-toggle
+                matIconSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field class="width-50 ml-10">
+              <mat-label>Prioridad</mat-label>
+              <mat-select formControlName="priority">
+                <mat-option
+                  *ngFor="let food of priorityList"
+                  [value]="food.value"
+                >
+                  {{ food.viewValue }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <form [formGroup]="tagsForm">
+            <div class="maintenance__inputs-row">
+              <mat-form-field class="width-80 mr-20">
+                <mat-label>Etiquetas</mat-label>
+                <input
+                  matInput
+                  formControlName="tag"
+                  placeholder="Algun tag..."
+                  value=""
+                />
+              </mat-form-field>
+
+              <button
+                [disabled]="tagsForm.invalid"
+                mat-raised-button
+                color="primary"
+                (click)="addTag()"
+              >
+                Agregar
+              </button>
+            </div>
+          </form>
+          <div>
+            <div
+              *ngFor="let tag of getListTags(); let i = index"
+              class="demo-section"
+            >
+              {{ tag }}
+              <button
+                (click)="removeTag(i)"
+                mat-mini-fab
+                color="accent"
+                aria-label="Example icon button with a delete icon"
+              >
+                <mat-icon>close</mat-icon>
+              </button>
+            </div>
+          </div>
+          <div class="maintenance__save">
+            <button class="mr-10" mat-raised-button color="secondary" (click)="Cancelar()">
+              Cancelar
+            </button>
+
+            <button
+              [disabled]="form.invalid"
+              mat-raised-button
+              color="primary"
+              (click)="saveData()"
+            >
+              {{ isUpdating() ? "Actualizar" : "Crear" }} Tarea
+            </button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </form>
+</div>

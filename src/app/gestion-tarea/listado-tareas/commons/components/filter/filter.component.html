@@ -1,0 +1,55 @@
+<form [formGroup]="form">
+  <div class="filter">
+    <div class="filter__inputs">
+      <mat-form-field>
+        <mat-label>Estado</mat-label>
+        <mat-select formControlName="status">
+          <mat-option *ngFor="let food of statusList" [value]="food.value">
+            {{ food.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="filter__input-date">
+        <mat-label>Fecha Vencimiento</mat-label>
+        <input
+          formControlName="expirationDate"
+          matInput
+          [matDatepicker]="picker"
+        />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Prioridad</mat-label>
+        <mat-select formControlName="priority">
+          <mat-option *ngFor="let food of priorityList" [value]="food.value">
+            {{ food.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="filter__button">
+      <button
+        (click)="onCleanFilter()"
+        class="filter__button-clear"
+        mat-raised-button
+      >
+        Limpiar
+      </button>
+      <button
+        (click)="onFilter()"
+        class="filter__button-filter"
+        mat-raised-button
+        color="primary"
+      >
+        Filtrar
+      </button>
+    </div>
+  </div>
+</form>

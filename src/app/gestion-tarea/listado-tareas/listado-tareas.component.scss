@@ -1,0 +1,30 @@
+.list {
+  margin-top: 50px;
+
+  &__order-by {
+    margin-top: 80px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+  }
+
+  &__table-edit-button {
+    margin: 0 5px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .list {
+    &__filter-inputs {
+      flex-wrap: wrap;
+    }
+
+    &__input-date {
+      margin: 0;
+    }
+
+    &__table-edit-button {
+      margin: 5px 0px;
+    }
+  }
+}

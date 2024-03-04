@@ -1,0 +1,19 @@
+<div class="header">
+  <mat-toolbar color="primary">
+    <span routerLink="/tarea/listado">KeOla</span>
+
+    <span class="example-spacer"></span>
+
+    <button
+      class="list__filter-button-clear"
+      routerLink="/tarea/creacion"
+      mat-raised-button
+    >
+      Nueva Tarea
+    </button>
+  </mat-toolbar>
+</div>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
